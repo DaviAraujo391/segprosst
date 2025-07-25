@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Histórico de Entregas de EPI</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Funcionário</th>
+            <th>Equipamento</th>
+            <th>Quantidade</th>
+            <th>Data</th>
+            <th>Responsável</th>
+            <th>Assinatura</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entrega in entregas %}
+        <tr>
+            <td>{{ entrega.funcionario.nome }}</td>
+            <td>{{ entrega.equipamento.nome }}</td>
+            <td>{{ entrega.quantidade }}</td>
+            <td>{{ entrega.data_entrega }}</td>
+            <td>{{ entrega.responsavel_entrega.username }}</td>
+            <td>
+                {% if entrega.assinatura_confirmada %}
+                    ✅
+                {% else %}
+                    ❌
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">Nenhuma entrega registrada.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'epi:registrar_entrega' %}" class="btn btn-primary">Nova Entrega</a>
+{% endblock %}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificado de Conclusão</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .certificado {
+            background: white;
+            padding: 40px;
+            border: 6px double #333;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin: 20px 0 10px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        .codigo {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .btn {
+            margin-top: 40px;
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        @media print {
+            .btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="certificado">
+        <h1>Certificado de Conclusão</h1>
+
+        <h2>Conferido a:</h2>
+        <h2><strong>{{ aluno.get_full_name|default:aluno.username }}</strong></h2>
+
+        <p>pela conclusão do curso</p>
+        <h2>"{{ curso.titulo }}"</h2>
+
+        <p>Carga Horária: {{ curso.carga_horaria }} horas</p>
+        <p>Data de Emissão: {{ certificado.data_emissao|date:"d/m/Y" }}</p>
+
+        <div class="codigo">Código de Validação: {{ certificado.codigo_validacao }}</div>
+
+        <a href="{% url 'cursos:certificado' curso.id %}" class="btn" target="_blank">
+            Baixar PDF do Certificado
+        </a>
+    </div>
+</body>
+</html>
+

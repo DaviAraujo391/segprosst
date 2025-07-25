@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Home - SEGPROSST{% endblock %}
+
+{% block content %}
+<section class="bg-light py-5 text-center">
+  <div class="container">
+    <h1 class="display-4 fw-bold mb-3">Bem-vindo à SEGPROSST</h1>
+    <p class="lead text-muted mb-4">
+      Portal especializado em cursos e treinamentos voltados à segurança do trabalho.
+      Capacite-se com conteúdos atualizados e instrutores experientes.
+    </p>
+    <a href="{% url 'cursos:lista' %}" class="btn btn-success btn-lg px-4">
+      Explorar Cursos
+    </a>
+  </div>
+</section>
+
+<section class="container py-5">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="mb-3">
+        <i class="bi bi-shield-lock display-4 text-success"></i>
+      </div>
+      <h5>Compromisso com a Segurança</h5>
+      <p class="text-muted">Cursos pensados para promover ambientes de trabalho mais seguros.</p>
+    </div>
+    <div class="col-md-4">
+      <div class="mb-3">
+        <i class="bi bi-mortarboard display-4 text-success"></i>
+      </div>
+      <h5>Formação Profissional</h5>
+      <p class="text-muted">Instrutores qualificados e material didático sempre atualizado.</p>
+    </div>
+    <div class="col-md-4">
+      <div class="mb-3">
+        <i class="bi bi-patch-check display-4 text-success"></i>
+      </div>
+      <h5>Certificados Reconhecidos</h5>
+      <p class="text-muted">Conclua os cursos e receba seu certificado digital automaticamente.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+

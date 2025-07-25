@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ curso.titulo }}</h1>
+
+{% if curso.imagem %}
+  <img src="{{ curso.imagem.url }}" alt="Imagem do curso" style="max-width: 300px;">
+{% endif %}
+
+<p>{{ curso.descricao|linebreaks }}</p>
+
+<h3>Módulos</h3>
+<ul>
+  {% for modulo in modulos %}
+    <li>
+      <strong>{{ modulo.titulo }}</strong>
+      <ul>
+        {% for aula in modulo.aulas.all %}
+          <li>
+            <a href="{% url 'cursos:aula' modulo.id aula.id %}">{{ aula.titulo }}</a>
+          </li>
+        {% empty %}
+          <li>Sem aulas cadastradas.</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% empty %}
+    <li>Sem módulos cadastrados.</li>
+  {% endfor %}
+</ul>
+
+{% if user.is_authenticated %}
+  <a href="{% url 'cursos:matricular' curso.id %}" class="btn btn-primary">Matricular-se</a>
+{% else %}
+  <p><a href="{% url 'usuarios:login' %}">Faça login</a> para se matricular.</p>
+{% endif %}
+
+<a href="{% url 'usuarios:painel' %}">Voltar à área do aluno</a>
+{% endblock %}

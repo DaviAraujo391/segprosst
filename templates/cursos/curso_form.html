@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Editar Curso: {{ curso.titulo }}</h2>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}
+    <div class="mb-3">
+      {{ field.label_tag }}
+      {{ field }}
+      {{ field.errors }}
+    </div>
+  {% endfor %}
+  <button type="submit" class="btn btn-success">Salvar Alterações</button>
+</form>
+{% endblock %}
+

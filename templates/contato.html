@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Fale Conosco - SEGPROSST{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2 class="mb-4 text-center">Fale Conosco</h2>
+      <p class="text-center text-muted">
+        Tem dúvidas, sugestões ou precisa de consultoria em Segurança do Trabalho? Preencha o formulário abaixo e nossa equipe entrará em contato.
+      </p>
+
+      <form method="post" action="{% url 'contato' %}" class="mt-4 shadow p-4 rounded bg-white">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="nome" class="form-label">Seu nome completo</label>
+          <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Seu e-mail</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="nome@exemplo.com" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="mensagem" class="form-label">Mensagem</label>
+          <textarea class="form-control" id="mensagem" name="mensagem" rows="6" placeholder="Digite sua mensagem..." required></textarea>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-success btn-lg">Enviar mensagem</button>
+        </div>
+      </form>
+
+      <div class="text-center mt-4 text-muted small">
+        Ou envie um e-mail diretamente para <a href="mailto:contato@segprosst.com.br">contato@segprosst.com.br</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

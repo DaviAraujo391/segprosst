@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Serviços Documentais Oferecidos</h2>
+<p>A SEGPROSST oferece a elaboração e acompanhamento técnico dos seguintes documentos:</p>
+
+<ul>
+  {% for servico in servicos %}
+    <li>{{ servico }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
+

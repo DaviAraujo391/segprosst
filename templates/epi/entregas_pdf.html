@@ -1,0 +1,28 @@
+<!-- templates/epi/entregas_pdf.html -->
+<!DOCTYPE html>
+<html>
+<head><style>table, th, td { border: 1px solid black; border-collapse: collapse; }</style></head>
+<body>
+<h2>Relatório de Entregas de EPI</h2>
+<table>
+  <tr>
+    <th>Funcionário</th>
+    <th>Matrícula</th>
+    <th>Equipamento</th>
+    <th>Quantidade</th>
+    <th>Data</th>
+    <th>Responsável</th>
+  </tr>
+  {% for e in entregas %}
+  <tr>
+    <td>{{ e.funcionario.nome }}</td>
+    <td>{{ e.funcionario.matricula }}</td>
+    <td>{{ e.equipamento.nome }}</td>
+    <td>{{ e.quantidade }}</td>
+    <td>{{ e.data_entrega|date:"d/m/Y" }}</td>
+    <td>{{ e.responsavel_entrega.username }}</td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+</html>

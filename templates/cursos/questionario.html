@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Questionário - {{ questionario.aula.titulo }}</h2>
+
+<form method="post">
+  {% csrf_token %}
+  <p><strong>Pergunta:</strong> {{ questionario.pergunta }}</p>
+  <label for="resposta">Sua resposta:</label><br>
+  <input type="text" name="resposta" id="resposta" required><br><br>
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+<p><a href="{% url 'cursos:aula' questionario.aula.modulo.id questionario.aula.id %}">Voltar à aula</a></p>
+{% endblock %}
