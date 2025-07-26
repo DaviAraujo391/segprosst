@@ -8,9 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-chave-de-desenvolvimento'
 DEBUG = True
 
-import os
-
-ALLOWED_HOSTS = ['*'] if os.environ.get('RENDER', None) else []
+ALLOWED_HOSTS = ['segprosst.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Apps instalados
