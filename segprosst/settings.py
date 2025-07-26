@@ -5,8 +5,8 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-chave-de-desenvolvimento'
-DEBUG = True
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-chave-de-desenvolvimento')
+DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['segprosst.onrender.com', 'localhost', '127.0.0.1']
 
@@ -83,13 +83,21 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'noreply@segprosst.com.br'
+# Configurações de email - SMTP Gmail (exemplo)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'davi.araujo18@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '@Dm190621')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Configurações de login
 LOGIN_URL = '/usuarios/login/'
-LOGIN_REDIRECT_URL = '/usuarios/painel/'
+LOGIN_REDIRECT_URL = '/usuarios/portal/'
 LOGOUT_REDIRECT_URL = '/'
+
+
 
 
 

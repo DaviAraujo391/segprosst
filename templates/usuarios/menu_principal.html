@@ -1,21 +1,49 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% block title %}Portal do Aluno{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-  <h2>Bem-vindo, {{ user.username }}</h2>
-  <p>Escolha uma opção:</p>
+<div class="text-center mb-5">
+  <h2 class="fw-bold">Bem-vindo, {{ user.username }}</h2>
+  <p class="lead text-muted">Escolha uma das opções abaixo para continuar</p>
+</div>
 
-  <div class="row">
-    <div class="col-md-4">
-      <a href="{% url 'usuarios:painel' %}" class="btn btn-outline-primary btn-block w-100">Painel de Treinamento</a>
-    </div>
-    <div class="col-md-4">
-      <a href="#" class="btn btn-outline-secondary btn-block w-100">Painel de Gestão de EPI</a>
-    </div>
-    <div class="col-md-4">
-      <a href="#" class="btn btn-outline-dark btn-block w-100">Painel de Documentos</a>
-    </div>
+<div class="row justify-content-center g-4">
+  <div class="col-md-4">
+    <a href="{% url 'usuarios:painel' %}" class="btn btn-outline-primary w-100 py-3 fs-5 rounded-3 shadow-sm">
+      <i class="bi bi-journal-text me-2"></i> Painel de Treinamento
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="#" class="btn btn-outline-secondary w-100 py-3 fs-5 rounded-3 shadow-sm">
+      <i class="bi bi-shield-lock me-2"></i> Painel de Gestão de EPI
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="#" class="btn btn-outline-dark w-100 py-3 fs-5 rounded-3 shadow-sm">
+      <i class="bi bi-folder2-open me-2"></i> Painel de Documentos
+    </a>
   </div>
 </div>
 {% endblock %}
+
+{% block extra_css %}
+<style>
+  /* Estilo para botões no portal */
+  a.btn-outline-primary:hover, a.btn-outline-primary:focus {
+    background-color: #0d6efd;
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(13, 110, 253, 0.3);
+  }
+  a.btn-outline-secondary:hover, a.btn-outline-secondary:focus {
+    background-color: #6c757d;
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+  }
+  a.btn-outline-dark:hover, a.btn-outline-dark:focus {
+    background-color: #212529;
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(33, 37, 41, 0.3);
+  }
+</style>
+{% endblock %}
+

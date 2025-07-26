@@ -58,4 +58,3 @@ def matricular(request, curso_id):
 def menu_principal(request):
     return render(request, 'usuarios/menu_principal.html')
 
-

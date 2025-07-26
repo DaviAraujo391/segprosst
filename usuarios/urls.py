@@ -1,4 +1,5 @@
 # usuarios/urls.py
+
 from django.urls import path, reverse_lazy
 from django.contrib.auth import views as auth_views
 from . import views
@@ -14,8 +15,9 @@ urlpatterns = [
 
     path('cadastro/', views.cadastro, name='cadastro'),
 
-    path('portal/', views.menu_principal, name='menu_principal'),  # <- manter só esta rota
-    path('painel/', views.painel, name='painel'),
+    path('portal/', views.menu_principal, name='menu_principal'),  # Após login, menu principal
+
+    path('painel/', views.painel, name='painel'),  # Painel de Treinamento do aluno
 
     path('matricular/<int:curso_id>/', views.matricular, name='matricular'),
 

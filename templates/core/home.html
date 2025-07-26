@@ -1,97 +1,120 @@
-{% extends 'base.html' %}
-{% block title %}SegPro SST - Home{% endblock %}
+{% block extra_css %}
+<style>
+  /* Fonte mais moderna */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+  }
 
-{% block content %}
-<!-- Layout principal com sidebar -->
-<div class="container-fluid">
-  <div class="row">
+  /* Navegação superior */
+  header nav ul.nav {
+    gap: 1.25rem;
+  }
 
-    <!-- Sidebar lateral esquerda -->
-    <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar shadow-sm p-3">
-      <h4 class="text-success mb-3">SegPro SST</h4>
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link" href="#consultoria">Consultoria</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#contato">Contato</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#sobre">Sobre</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-            Treinamentos
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">NR-5 – CIPA</a></li>
-            <li><a class="dropdown-item" href="#">NR-6 – EPI</a></li>
-            <li><a class="dropdown-item" href="#">NR-10 – Segurança em Instalações Elétricas</a></li>
-            <li><a class="dropdown-item" href="#">NR-12 – Máquinas e Equipamentos</a></li>
-            <li><a class="dropdown-item" href="#">NR-35 – Trabalho em Altura</a></li>
-            <li><a class="dropdown-item" href="#">Investigação de Acidentes</a></li>
-            <li><a class="dropdown-item" href="#">Perícias de Insalubridade e Periculosidade</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
+  header nav ul.nav .nav-link {
+    transition: all 0.3s ease;
+    color: #444;
+    font-weight: 600;
+  }
+  header nav ul.nav .nav-link.btn-outline-success {
+    border-color: #28a745;
+    color: #28a745;
+  }
+  header nav ul.nav .nav-link.btn-outline-success:hover,
+  header nav ul.nav .nav-link.btn-outline-success:focus {
+    background-color: #28a745;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+  }
 
-    <!-- Conteúdo principal -->
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+  header nav ul.nav .nav-link.btn-outline-primary {
+    border-color: #0d6efd;
+    color: #0d6efd;
+  }
+  header nav ul.nav .nav-link.btn-outline-primary:hover,
+  header nav ul.nav .nav-link.btn-outline-primary:focus {
+    background-color: #0d6efd;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
+  }
 
-      <!-- Seção: Consultoria e Treinamento -->
-      <section id="consultoria" class="mb-5 bg-white p-4 shadow rounded-3">
-        <h2 class="mb-3">Consultoria e Treinamento</h2>
-        <p>Prestamos serviços especializados em Segurança do Trabalho, atuando com treinamentos das Normas Regulamentadoras, elaboração de laudos técnicos, instruções técnicas e AVCB.</p>
-        <p>Também oferecemos assistência técnica em perícias trabalhistas de insalubridade e periculosidade.</p>
-        <a href="{% url 'core:acesso_portal' %}" class="btn btn-success">Acesse o Portal</a>
-      </section>
+  header nav ul.nav .nav-link.btn-outline-dark {
+    border-color: #212529;
+    color: #212529;
+  }
+  header nav ul.nav .nav-link.btn-outline-dark:hover,
+  header nav ul.nav .nav-link.btn-outline-dark:focus {
+    background-color: #212529;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(33, 37, 41, 0.4);
+  }
 
-      <!-- Seção: Contato e Orçamento -->
-      <section id="contato" class="mb-5 bg-light p-4 shadow rounded-3">
-        <h2 class="mb-3">Contato e Orçamento</h2>
-        <form action="{% url 'core:contato' %}" method="post">
-          {% csrf_token %}
-          <div class="mb-3">
-            <input type="text" name="nome" class="form-control" placeholder="Seu nome" required>
-          </div>
-          <div class="mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Seu e-mail" required>
-          </div>
-          <div class="mb-3">
-            <textarea name="mensagem" class="form-control" placeholder="Sua mensagem" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-      </section>
+  header nav ul.nav .nav-link.btn-outline-info {
+    border-color: #0dcaf0;
+    color: #0dcaf0;
+  }
+  header nav ul.nav .nav-link.btn-outline-info:hover,
+  header nav ul.nav .nav-link.btn-outline-info:focus {
+    background-color: #0dcaf0;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(13, 202, 240, 0.4);
+  }
 
-      <!-- Seção: Sobre a empresa -->
-      <section id="sobre" class="mb-5 bg-white p-4 shadow rounded-3">
-        <h2 class="mb-3">Sobre a Empresa</h2>
-        <p>Somos uma empresa especializada em Consultoria de Segurança do Trabalho. Atuamos com foco na prevenção de acidentes, promoção da saúde ocupacional e conformidade legal.</p>
-        <p>Com uma equipe técnica altamente capacitada, prestamos suporte completo às empresas em treinamentos, laudos e auditorias.</p>
-        
-        <h5 class="mt-4">Localização</h5>
-        <p>Rua George Ohm, 55 - Cidade Monções - São Paulo/SP</p>
+  /* Dropdown menu */
+  .dropdown-menu {
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+  }
+  .dropdown-item:hover, .dropdown-item:focus {
+    background-color: #0dcaf0;
+    color: white !important;
+  }
 
-        <!-- Mapa do Google Maps -->
-        <div class="ratio ratio-16x9">
-          <iframe 
-            src="https://www.google.com/maps?q=Rua+George+Ohm,+55+-+Cidade+Monções,+São+Paulo+-+SP&output=embed"
-            width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy">
-          </iframe>
-        </div>
-      </section>
+  /* Cards (seções) */
+  section {
+    box-shadow:
+      0 4px 6px rgba(0, 0, 0, 0.1),
+      0 1px 3px rgba(0, 0, 0, 0.06);
+    border-radius: 1rem;
+    transition: box-shadow 0.3s ease;
+    background: white;
+  }
+  section:hover {
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.15),
+      0 2px 6px rgba(0, 0, 0, 0.10);
+  }
 
-    </main>
-  </div>
-</div>
+  /* Formulário */
+  form input.form-control-lg,
+  form textarea.form-control-lg {
+    border-radius: 0.6rem;
+    border: 1.5px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  form input.form-control-lg:focus,
+  form textarea.form-control-lg:focus {
+    border-color: #0dcaf0;
+    box-shadow: 0 0 8px rgba(13, 202, 240, 0.6);
+  }
 
-<!-- Botão WhatsApp flutuante -->
-<a href="https://wa.me/55954926235" class="position-fixed bottom-0 end-0 m-4 btn btn-success rounded-circle shadow" style="z-index:999;" target="_blank" aria-label="WhatsApp">
-  <i class="bi bi-whatsapp fs-3"></i>
-</a>
+  /* Botão WhatsApp */
+  a.position-fixed.btn-success {
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  a.position-fixed.btn-success:hover, 
+  a.position-fixed.btn-success:focus {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.9);
+  }
 
+  /* Mapa arredondado */
+  .ratio iframe {
+    border-radius: 1rem;
+  }
+</style>
 {% endblock %}
 
 
