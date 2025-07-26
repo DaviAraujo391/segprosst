@@ -9,14 +9,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include(('core.urls', 'core'), namespace='core')),
-
     path('cursos/', include(('cursos.urls', 'cursos'), namespace='cursos')),
-
     path('usuarios/', include(('usuarios.urls', 'usuarios'), namespace='usuarios')),
-
     path('documentos/', include(('documentos.urls', 'documentos'), namespace='documentos')),
-
     path('epi/', include(('epi.urls', 'epi'), namespace='epi')),
+
+    # Adicione esta linha para resolver URLs padrão de autenticação (login/logout/password)
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 # Servir arquivos de mídia em modo DEBUG
