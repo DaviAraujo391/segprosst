@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Fale Conosco - SEGPROSST{% endblock %}
+{% block title %}Fale Conosco - Segprosst{% endblock %}
 {% block content %}
 
 <div class="container py-5">
@@ -10,7 +10,7 @@
         Tem dúvidas, sugestões ou precisa de consultoria em Segurança do Trabalho? Preencha o formulário abaixo e nossa equipe entrará em contato.
       </p>
 
-      <form method="post" action="{% url 'contato' %}" class="mt-4 shadow p-4 rounded bg-white">
+      <form method="post" action="{% url 'core:contato' %}" class="mt-4 shadow p-4 rounded bg-white">
         {% csrf_token %}
         <div class="mb-3">
           <label for="nome" class="form-label">Seu nome completo</label>

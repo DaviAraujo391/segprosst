@@ -1,7 +1,3 @@
-# views.py
-
-# core/views.py
-
 from django.shortcuts import render
 
 def home(request):
@@ -12,3 +8,4 @@ def sobre(request):
 
 def contato(request):
     return render(request, 'contato.html')
+
