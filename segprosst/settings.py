@@ -85,7 +85,7 @@ USE_TZ = True
 
 # Arquivos estáticos
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # pasta onde você coloca seus .css, .js, etc.
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # pasta onde você coloca seus .css, .js, etc.
 
 # Arquivos de mídia (upload de imagens, comprovantes etc)
 MEDIA_URL = '/media/'
