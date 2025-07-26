@@ -1,16 +1,17 @@
+# usuarios/views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from cursos.models import Matricula  # Importa os cursos matriculados
+from cursos.models import Matricula
 
 def cadastro(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        email    = request.POST.get('email')
-        senha1   = request.POST.get('senha1')
-        senha2   = request.POST.get('senha2')
+        email = request.POST.get('email')
+        senha1 = request.POST.get('senha1')
+        senha2 = request.POST.get('senha2')
 
         if senha1 != senha2:
             messages.error(request, 'As senhas não conferem.')
@@ -26,13 +27,13 @@ def cadastro(request):
 
     return render(request, 'usuarios/cadastro.html')
 
-
-@login_required
+@login_required(login_url='/usuarios/login/')
 def painel(request):
     cursos = Matricula.objects.filter(aluno=request.user)
     return render(request, 'usuarios/painel.html', {
         'usuario': request.user,
         'cursos': cursos
     })
+
 
 

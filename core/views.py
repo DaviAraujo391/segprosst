@@ -1,16 +1,17 @@
+# core/views.py
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'core/home.html')
 
 def sobre(request):
-    return render(request, 'sobre.html')
+    return render(request, 'core/sobre.html')
 
 def contato(request):
-    return render(request, 'contato.html')
+    return render(request, 'core/contato.html')
 
+@login_required(login_url='/usuarios/login/')
 def acesso_portal(request):
-    if request.user.is_authenticated:
-        return redirect('usuarios:painel')
-    return redirect('/accounts/login/?next=/usuarios/painel/')
+    return redirect('usuarios:painel')
 

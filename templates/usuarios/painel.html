@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
+{% block title %}Painel - Área do Aluno{% endblock %}
 
 {% block content %}
-<h2>Olá, {{ usuario.username }}!</h2>
-<p>Bem-vindo à sua área do aluno.</p>
+<div class="container mt-4">
+  <h2>Olá, {{ usuario.username }}!</h2>
+  <p>Bem-vindo à sua área do aluno.</p>
 
-<hr>
+  <hr>
 
-<h4>Seus Cursos</h4>
-<ul>
-  {% for m in cursos %}
-    <li>{{ m.curso.titulo }}</li>
-  {% empty %}
-    <li>Você ainda não está matriculado em nenhum curso.</li>
-  {% endfor %}
-</ul>
+  <h4>Seus Cursos</h4>
+  <ul>
+    {% for m in cursos %}
+      <li>{{ m.curso.titulo }}</li>
+    {% empty %}
+      <li>Você ainda não está matriculado em nenhum curso.</li>
+    {% endfor %}
+  </ul>
 
-<a href="{% url 'usuarios:logout' %}" class="btn btn-danger mt-3">Sair</a>
+  <a href="{% url 'usuarios:logout' %}" class="btn btn-danger mt-3">Sair</a>
+</div>
 {% endblock %}
+
 
