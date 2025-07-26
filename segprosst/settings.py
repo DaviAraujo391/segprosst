@@ -98,7 +98,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER or 'noreply@seusite.com'
 
 # Redirecionamentos de login
 LOGIN_URL = '/usuarios/login/'
-LOGIN_REDIRECT_URL = '/usuarios/portal/'
+LOGIN_REDIRECT_URL = '/usuarios/painel/'
 LOGOUT_REDIRECT_URL = '/'
 
 
