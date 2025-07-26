@@ -3,20 +3,14 @@
 
 {% block content %}
 <!-- Cabeçalho -->
-<header class="bg-light py-3 border-bottom">
-  <div class="container d-flex justify-content-between align-items-center">
-    <h1 class="h4">Fala Lixo</h1>
-    <nav>
-      <a href="#consultoria" class="mx-2">Consultoria</a>
-      <a href="#contato" class="mx-2">Contato</a>
-      <a href="#sobre" class="mx-2">Sobre</a>
-      <a href="{% url 'core:acesso_portal' %}" class="btn btn-primary btn-sm">Portal</a>
+<header class="bg-light py-3 border-bottom shadow-sm">
+  <div class="container d-flex justify-content-between align-items-center flex-wrap">
+    <h1 class="h4 mb-2 mb-md-0">Fala Lixo</h1>
+    <nav class="d-flex gap-2">
+      <a href="#consultoria" class="btn btn-outline-success">Consultoria</a>
+      <a href="#contato" class="btn btn-outline-primary">Contato</a>
+      <a href="#sobre" class="btn btn-outline-dark">Sobre</a>
     </nav>
-    <div>
-      <a href="https://instagram.com/suaempresa" target="_blank" class="mx-1"><i class="bi bi-instagram"></i></a>
-      <a href="https://facebook.com/suaempresa" target="_blank" class="mx-1"><i class="bi bi-facebook"></i></a>
-      <a href="https://linkedin.com/company/suaempresa" target="_blank" class="mx-1"><i class="bi bi-linkedin"></i></a>
-    </div>
   </div>
 </header>
 
@@ -42,7 +36,7 @@
         <input type="email" name="email" class="form-control" placeholder="Seu e-mail" required>
       </div>
       <div class="mb-3">
-        <textarea name="mensagem" class="form-control" placeholder="Sua mensagem" required></textarea>
+        <textarea name="mensagem" class="form-control" placeholder="Sua mensagem" rows="4" required></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
@@ -54,13 +48,27 @@
   <div class="container">
     <h2 class="mb-4">Sobre a Empresa</h2>
     <p>Somos uma empresa especializada em gestão de resíduos e treinamentos ambientais. Com anos de experiência, ajudamos empresas a alcançarem a conformidade legal e a sustentabilidade.</p>
+    
     <h5>Localização</h5>
-    <p>Rua Exemplo, 123 - Bairro - Cidade/UF</p>
+    <p>Rua George Ohm, 55 - Cidade Monções - São Paulo/SP</p>
+
+    <!-- Mapa do Google Maps -->
+    <div class="ratio ratio-16x9 mt-3">
+      <iframe 
+        src="https://www.google.com/maps?q=Rua+George+Ohm,+55+-+Cidade+Monções,+São+Paulo+-+SP&output=embed"
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
   </div>
 </section>
 
 <!-- WhatsApp flutuante -->
-<a href="https://wa.me/5599999999999" class="position-fixed bottom-0 end-0 m-4 btn btn-success rounded-circle shadow" style="z-index:999;" target="_blank">
+<a href="https://wa.me/55954926235" class="position-fixed bottom-0 end-0 m-4 btn btn-success rounded-circle shadow" style="z-index:999;" target="_blank" aria-label="WhatsApp">
   <i class="bi bi-whatsapp fs-3"></i>
 </a>
 {% endblock %}
