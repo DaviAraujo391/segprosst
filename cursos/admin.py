@@ -1,4 +1,6 @@
-from django.contrib import admin
+# Arquivo: cursos/admin.py
+
+from django.contrib import admin 
 from .models import (
     Curso, Matricula, Modulo, Aula,
     Progresso, Questionario, Resposta, Certificado
@@ -49,6 +51,7 @@ class CertificadoAdmin(admin.ModelAdmin):
     list_display = ('curso', 'aluno', 'emitido_em', 'codigo_validacao')
     search_fields = ('aluno__username', 'curso__titulo', 'codigo_validacao')
     list_filter = ('emitido_em',)
+
 
 
 

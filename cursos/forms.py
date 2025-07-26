@@ -1,3 +1,5 @@
+# Arquivo: cursos/forms.py
+
 from django import forms
 from .models import Curso, Aula
 

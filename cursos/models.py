@@ -1,7 +1,8 @@
+# Arquivo: cursos/models.py
+
 from django.db import models
 from django.contrib.auth.models import User
 
-# Curso base
 class Curso(models.Model):
     titulo = models.CharField(max_length=255)
     descricao = models.TextField()
@@ -14,8 +15,6 @@ class Curso(models.Model):
     def __str__(self):
         return self.titulo
 
-
-# Matrícula do aluno
 class Matricula(models.Model):
     aluno = models.ForeignKey(User, on_delete=models.CASCADE)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
@@ -27,8 +26,6 @@ class Matricula(models.Model):
     def __str__(self):
         return f'{self.aluno.username} em {self.curso.titulo}'
 
-
-# Organização de módulos
 class Modulo(models.Model):
     curso = models.ForeignKey(Curso, related_name='modulos', on_delete=models.CASCADE)
     titulo = models.CharField(max_length=255)
@@ -40,8 +37,6 @@ class Modulo(models.Model):
     def __str__(self):
         return f'{self.ordem}. {self.titulo}'
 
-
-# Aulas dentro dos módulos
 class Aula(models.Model):
     modulo = models.ForeignKey(Modulo, related_name='aulas', on_delete=models.CASCADE)
     titulo = models.CharField(max_length=255)
@@ -56,8 +51,6 @@ class Aula(models.Model):
     def __str__(self):
         return self.titulo
 
-
-# Progresso do aluno em cada aula
 class Progresso(models.Model):
     aluno = models.ForeignKey(User, on_delete=models.CASCADE)
     aula = models.ForeignKey(Aula, on_delete=models.CASCADE)
@@ -67,8 +60,6 @@ class Progresso(models.Model):
     def __str__(self):
         return f"{self.aluno.username} - {self.aula.titulo}"
 
-
-# Questionário associado a uma aula
 class Questionario(models.Model):
     aula = models.OneToOneField(Aula, on_delete=models.CASCADE)
     pergunta = models.TextField()
@@ -77,8 +68,6 @@ class Questionario(models.Model):
     def __str__(self):
         return f'Pergunta - {self.aula.titulo}'
 
-
-# Resposta do aluno ao questionário
 class Resposta(models.Model):
     aluno = models.ForeignKey(User, on_delete=models.CASCADE)
     questionario = models.ForeignKey(Questionario, on_delete=models.CASCADE)
@@ -89,8 +78,6 @@ class Resposta(models.Model):
     def __str__(self):
         return f'{self.aluno.username} - {self.questionario.aula.titulo}'
 
-
-# Certificado de conclusão do curso
 class Certificado(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     aluno = models.ForeignKey(User, on_delete=models.CASCADE)

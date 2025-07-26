@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'core',
     'cursos',
     'usuarios',
-    'documentos',
     'epi',
 ]
 
@@ -98,7 +97,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER or 'noreply@seusite.com'
 
 # Redirecionamentos de login
 LOGIN_URL = '/usuarios/login/'
-LOGIN_REDIRECT_URL = '/usuarios/painel/'
+LOGIN_REDIRECT_URL = '/usuarios/portal/'
 LOGOUT_REDIRECT_URL = '/'
 
 

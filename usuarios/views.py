@@ -1,10 +1,10 @@
 # usuarios/views.py
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import views as auth_views
 from cursos.models import Curso, Matricula
 
 def cadastro(request):
@@ -32,8 +32,8 @@ def cadastro(request):
 @login_required(login_url='/usuarios/login/')
 def painel(request):
     cursos = Curso.objects.all()
-
     lista = []
+
     for curso in cursos:
         matriculado = Matricula.objects.filter(aluno=request.user, curso=curso).exists()
         lista.append({
@@ -53,6 +53,7 @@ def matricular(request, curso_id):
     Matricula.objects.get_or_create(aluno=request.user, curso=curso)
     messages.success(request, f'Você foi matriculado no curso: {curso.titulo}')
     return redirect('usuarios:painel')
+
 
 @login_required(login_url='/usuarios/login/')
 def menu_principal(request):
