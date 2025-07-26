@@ -10,8 +10,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['segprosst.onrender.com', 'localhost', '127.0.0.1']
 
-
-# Apps instalados
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -19,8 +17,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # Seus apps locais
+
+    # Apps locais
     'core',
     'cursos',
     'usuarios',
@@ -28,7 +26,6 @@ INSTALLED_APPS = [
     'epi',
 ]
 
-# Middlewares padrão
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -39,19 +36,17 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# URLs principais
 ROOT_URLCONF = 'segprosst.urls'
 
-# Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # sua pasta /templates
+        'DIRS': [BASE_DIR / 'templates'],  # Ex: templates/login.html
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',  # necessário para usar {{ request }} nos templates
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -61,7 +56,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'segprosst.wsgi.application'
 
-# Banco de dados SQLite (padrão para dev)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -69,7 +63,6 @@ DATABASES = {
     }
 }
 
-# Validação de senhas
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -77,24 +70,26 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Localização
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
-# Arquivos estáticos
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # pasta onde você coloca seus .css, .js, etc.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Arquivos de mídia (upload de imagens, comprovantes etc)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'  # ex: media/comprovantes/
+MEDIA_ROOT = BASE_DIR / 'media'
 
-# AutoField padrão
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@segprosst.com.br'
+
+# Configurações de login
+LOGIN_URL = '/usuarios/login/'
+LOGIN_REDIRECT_URL = '/usuarios/painel/'
+LOGOUT_REDIRECT_URL = '/'
+
 
 

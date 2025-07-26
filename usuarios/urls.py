@@ -12,7 +12,7 @@ urlpatterns = [
     ), name='login'),
 
     path('logout/', auth_views.LogoutView.as_view(
-        next_page='core:home'
+        next_page='core:home'  # ou você pode usar '/' se preferir
     ), name='logout'),
 
     path('cadastro/', views.cadastro, name='cadastro'),
@@ -22,7 +22,7 @@ urlpatterns = [
         template_name='usuarios/password_reset.html',
         email_template_name='usuarios/password_reset_email.html',
         subject_template_name='usuarios/password_reset_subject.txt',
-        success_url='/usuarios/senha-enviada/'
+        success_url='senha-enviada/'  # atualizado para ser relativo ao app
     ), name='password_reset'),
 
     path('senha-enviada/', auth_views.PasswordResetDoneView.as_view(
