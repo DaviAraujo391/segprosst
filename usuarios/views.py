@@ -50,7 +50,7 @@ def painel(request):
 @login_required
 def matricular(request, curso_id):
     curso = get_object_or_404(Curso, id=curso_id)
-    Matricula.objects.get_or_create(usuario=request.user, curso=curso)
+    Matricula.objects.get_or_create(aluno=request.user, curso=curso)
     messages.success(request, f'Você foi matriculado no curso: {curso.titulo}')
     return redirect('usuarios:painel')
 
