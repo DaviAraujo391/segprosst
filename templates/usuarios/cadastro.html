@@ -1,26 +1,36 @@
 {% extends 'base.html' %}
 {% block title %}Cadastro - Segprosst{% endblock %}
+
 {% block content %}
-<h2>Cadastro</h2>
-<form method="post" action="{% url 'cadastro' %}">
-  {% csrf_token %}
-  <div class="mb-3">
-    <label for="username" class="form-label">Usuário</label>
-    <input type="text" class="form-control" id="username" name="username" required autofocus>
-  </div>
-  <div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" id="email" name="email" required>
-  </div>
-  <div class="mb-3">
-    <label for="password1" class="form-label">Senha</label>
-    <input type="password" class="form-control" id="password1" name="password1" required>
-  </div>
-  <div class="mb-3">
-    <label for="password2" class="form-label">Confirme a Senha</label>
-    <input type="password" class="form-control" id="password2" name="password2" required>
-  </div>
-  <button type="submit" class="btn btn-primary">Cadastrar</button>
-</form>
-<p class="mt-3">Já tem uma conta? <a href="{% url 'login' %}">Faça login aqui</a></p>
+<div class="container mt-5" style="max-width: 500px;">
+  <h2 class="mb-4 text-center">Cadastro</h2>
+
+  <form method="post" action="{% url 'usuarios:cadastro' %}">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+      <label for="username" class="form-label">Usuário</label>
+      <input type="text" class="form-control" id="username" name="username" required autofocus>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="password1" class="form-label">Senha</label>
+      <input type="password" class="form-control" id="password1" name="password1" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="password2" class="form-label">Confirme a Senha</label>
+      <input type="password" class="form-control" id="password2" name="password2" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+  </form>
+
+  <p class="mt-3 text-center">Já tem uma conta? <a href="{% url 'usuarios:login' %}">Faça login aqui</a></p>
+</div>
 {% endblock %}
