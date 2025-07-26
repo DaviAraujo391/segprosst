@@ -4,8 +4,12 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 
 def cria_superuser(request):
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'davi.araujo18@gmail.com', '@Dm190621')
+    if not User.objects.filter(username='davia').exists():
+        User.objects.create_superuser(
+            username='davia',
+            email='davi.araujo18@gmail.com',
+            password='admin123'
+        )
         return HttpResponse("✅ Superusuário criado com sucesso!")
     else:
         return HttpResponse("⚠️ Superusuário já existe.")
