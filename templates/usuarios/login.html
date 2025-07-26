@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block title %}Login - SEGPRO SST{% endblock %}
 
 {% block extra_css %}
@@ -7,12 +7,16 @@
   body {
     background: linear-gradient(135deg, #7b3fe4 0%, #a15ffb 100%);
     min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  main.container {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    padding-bottom: 80px; /* Espaço para o rodapé */
-    font-family: 'Segoe UI', sans-serif;
+    min-height: calc(100vh - 140px); /* 70px topo + 70px rodapé */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .login-card {
@@ -22,7 +26,6 @@
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     padding: 2.5rem 2rem;
-    margin-bottom: 2rem; /* Espaço extra abaixo do card */
     animation: fadeIn 0.8s ease-in-out;
   }
 
@@ -94,6 +97,7 @@
     font-size: 0.85rem;
     color: #444;
     text-align: center;
+    margin-top: 1rem;
   }
 
   .links a {
@@ -148,7 +152,7 @@
       </div>
     </div>
 
-    <div class="d-grid mb-4">
+    <div class="d-grid mb-3">
       <button type="submit" class="btn btn-primary" id="btnLogin">
         <span id="btnText">Entrar</span>
         <span id="btnSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status"></span>

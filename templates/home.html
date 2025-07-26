@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
-{% block title %}Home - SEGPROSST{% endblock %}
+{% block title %}Home - SEGPRO SST{% endblock %}
 
 {% block content %}
 <section class="bg-light py-5 text-center">
   <div class="container">
-    <h1 class="display-4 fw-bold mb-3">Bem-vindo à SEGPROSST</h1>
+    <h1 class="display-4 fw-bold mb-3">Bem-vindo à SEGPRO SST</h1>
     <p class="lead text-muted mb-4">
       Portal especializado em cursos e treinamentos voltados à segurança do trabalho.
       Capacite-se com conteúdos atualizados e instrutores experientes.
     </p>
-    <a href="{% url 'cursos:lista' %}" class="btn btn-success btn-lg px-4">
-      Explorar Cursos
+    <a href="{% url 'core:acesso_portal' %}" class="btn btn-primary btn-lg px-4">
+      Acessar o Portal SEGPRO SST
     </a>
   </div>
 </section>
