@@ -35,7 +35,7 @@ def painel(request):
 
     lista = []
     for curso in cursos:
-        matriculado = Matricula.objects.filter(usuario=request.user, curso=curso).exists()
+        matriculado = Matricula.objects.filter(aluno=request.user, curso=curso).exists()
         lista.append({
             'curso': curso,
             'matriculado': matriculado
