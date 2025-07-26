@@ -1,5 +1,5 @@
 {% extends 'base.html' %} 
-{% block title %}Login - SEGPROSST{% endblock %}
+{% block title %}Login - SEGPRO SST{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
@@ -10,7 +10,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem 1rem 2rem; /* aumenta distância do topo e evita rodapé colado */
+    padding: 1rem;
+    padding-bottom: 80px; /* Espaço para o rodapé */
     font-family: 'Segoe UI', sans-serif;
   }
 
@@ -21,6 +22,7 @@
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     padding: 2.5rem 2rem;
+    margin-bottom: 2rem; /* Espaço extra abaixo do card */
     animation: fadeIn 0.8s ease-in-out;
   }
 
@@ -127,7 +129,6 @@
           placeholder="Digite seu usuário" 
           required 
           autofocus
-          aria-label="Usuário"
         >
       </div>
     </div>
@@ -143,7 +144,6 @@
           name="password" 
           placeholder="Digite sua senha" 
           required
-          aria-label="Senha"
         >
       </div>
     </div>
@@ -151,7 +151,7 @@
     <div class="d-grid mb-4">
       <button type="submit" class="btn btn-primary" id="btnLogin">
         <span id="btnText">Entrar</span>
-        <span id="btnSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+        <span id="btnSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status"></span>
       </button>
     </div>
   </form>
