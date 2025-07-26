@@ -1,76 +1,97 @@
 {% extends 'base.html' %}
-{% block title %}Fala Lixo - Home{% endblock %}
+{% block title %}SegPro SST - Home{% endblock %}
 
 {% block content %}
-<!-- Cabeçalho -->
-<header class="bg-light py-3 border-bottom shadow-sm">
-  <div class="container d-flex justify-content-between align-items-center flex-wrap">
-    <h1 class="h4 mb-2 mb-md-0">Fala Lixo</h1>
-    <nav class="d-flex gap-2">
-      <a href="#consultoria" class="btn btn-outline-success">Consultoria</a>
-      <a href="#contato" class="btn btn-outline-primary">Contato</a>
-      <a href="#sobre" class="btn btn-outline-dark">Sobre</a>
+<!-- Layout principal com sidebar -->
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- Sidebar lateral esquerda -->
+    <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar shadow-sm p-3">
+      <h4 class="text-success mb-3">SegPro SST</h4>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="#consultoria">Consultoria</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contato">Contato</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#sobre">Sobre</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            Treinamentos
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">NR-5 – CIPA</a></li>
+            <li><a class="dropdown-item" href="#">NR-6 – EPI</a></li>
+            <li><a class="dropdown-item" href="#">NR-10 – Segurança em Instalações Elétricas</a></li>
+            <li><a class="dropdown-item" href="#">NR-12 – Máquinas e Equipamentos</a></li>
+            <li><a class="dropdown-item" href="#">NR-35 – Trabalho em Altura</a></li>
+            <li><a class="dropdown-item" href="#">Investigação de Acidentes</a></li>
+            <li><a class="dropdown-item" href="#">Perícias de Insalubridade e Periculosidade</a></li>
+          </ul>
+        </li>
+      </ul>
     </nav>
+
+    <!-- Conteúdo principal -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+
+      <!-- Seção: Consultoria e Treinamento -->
+      <section id="consultoria" class="mb-5 bg-white p-4 shadow rounded-3">
+        <h2 class="mb-3">Consultoria e Treinamento</h2>
+        <p>Prestamos serviços especializados em Segurança do Trabalho, atuando com treinamentos das Normas Regulamentadoras, elaboração de laudos técnicos, instruções técnicas e AVCB.</p>
+        <p>Também oferecemos assistência técnica em perícias trabalhistas de insalubridade e periculosidade.</p>
+        <a href="{% url 'core:acesso_portal' %}" class="btn btn-success">Acesse o Portal</a>
+      </section>
+
+      <!-- Seção: Contato e Orçamento -->
+      <section id="contato" class="mb-5 bg-light p-4 shadow rounded-3">
+        <h2 class="mb-3">Contato e Orçamento</h2>
+        <form action="{% url 'core:contato' %}" method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="text" name="nome" class="form-control" placeholder="Seu nome" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Seu e-mail" required>
+          </div>
+          <div class="mb-3">
+            <textarea name="mensagem" class="form-control" placeholder="Sua mensagem" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </section>
+
+      <!-- Seção: Sobre a empresa -->
+      <section id="sobre" class="mb-5 bg-white p-4 shadow rounded-3">
+        <h2 class="mb-3">Sobre a Empresa</h2>
+        <p>Somos uma empresa especializada em Consultoria de Segurança do Trabalho. Atuamos com foco na prevenção de acidentes, promoção da saúde ocupacional e conformidade legal.</p>
+        <p>Com uma equipe técnica altamente capacitada, prestamos suporte completo às empresas em treinamentos, laudos e auditorias.</p>
+        
+        <h5 class="mt-4">Localização</h5>
+        <p>Rua George Ohm, 55 - Cidade Monções - São Paulo/SP</p>
+
+        <!-- Mapa do Google Maps -->
+        <div class="ratio ratio-16x9">
+          <iframe 
+            src="https://www.google.com/maps?q=Rua+George+Ohm,+55+-+Cidade+Monções,+São+Paulo+-+SP&output=embed"
+            width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy">
+          </iframe>
+        </div>
+      </section>
+
+    </main>
   </div>
-</header>
+</div>
 
-<!-- Seção: Consultoria e Treinamento -->
-<section id="consultoria" class="py-5 bg-white">
-  <div class="container">
-    <h2 class="mb-4">Consultoria e Treinamento</h2>
-    <p>Oferecemos soluções completas em consultoria ambiental, treinamentos, gestão de resíduos, EPI e muito mais.</p>
-    <a href="{% url 'core:acesso_portal' %}" class="btn btn-success">Acesse o Portal</a>
-  </div>
-</section>
-
-<!-- Seção: Contato e Orçamento -->
-<section id="contato" class="py-5 bg-light">
-  <div class="container">
-    <h2 class="mb-4">Contato e Orçamento</h2>
-    <form action="{% url 'core:contato' %}" method="post">
-      {% csrf_token %}
-      <div class="mb-3">
-        <input type="text" name="nome" class="form-control" placeholder="Seu nome" required>
-      </div>
-      <div class="mb-3">
-        <input type="email" name="email" class="form-control" placeholder="Seu e-mail" required>
-      </div>
-      <div class="mb-3">
-        <textarea name="mensagem" class="form-control" placeholder="Sua mensagem" rows="4" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
-  </div>
-</section>
-
-<!-- Seção: Sobre a empresa -->
-<section id="sobre" class="py-5 bg-white">
-  <div class="container">
-    <h2 class="mb-4">Sobre a Empresa</h2>
-    <p>Somos uma empresa especializada em gestão de resíduos e treinamentos ambientais. Com anos de experiência, ajudamos empresas a alcançarem a conformidade legal e a sustentabilidade.</p>
-    
-    <h5>Localização</h5>
-    <p>Rua George Ohm, 55 - Cidade Monções - São Paulo/SP</p>
-
-    <!-- Mapa do Google Maps -->
-    <div class="ratio ratio-16x9 mt-3">
-      <iframe 
-        src="https://www.google.com/maps?q=Rua+George+Ohm,+55+-+Cidade+Monções,+São+Paulo+-+SP&output=embed"
-        width="100%" 
-        height="100%" 
-        style="border:0;" 
-        allowfullscreen 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-  </div>
-</section>
-
-<!-- WhatsApp flutuante -->
+<!-- Botão WhatsApp flutuante -->
 <a href="https://wa.me/55954926235" class="position-fixed bottom-0 end-0 m-4 btn btn-success rounded-circle shadow" style="z-index:999;" target="_blank" aria-label="WhatsApp">
   <i class="bi bi-whatsapp fs-3"></i>
 </a>
+
 {% endblock %}
 
 
