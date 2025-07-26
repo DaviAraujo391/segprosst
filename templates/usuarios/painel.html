@@ -8,14 +8,25 @@
 
   <hr>
 
-  <h4>Seus Cursos</h4>
-  <ul>
+  <h4>Todos os Cursos</h4>
+  <div class="row">
     {% for m in cursos %}
-      <li>{{ m.curso.titulo }}</li>
-    {% empty %}
-      <li>Você ainda não está matriculado em nenhum curso.</li>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ m.curso.titulo }}</h5>
+            <p class="card-text">{{ m.curso.descricao|truncatechars:100 }}</p>
+
+            {% if m.matriculado %}
+              <button class="btn btn-success" disabled>Matriculado</button>
+            {% else %}
+              <a href="{% url 'usuarios:matricular' m.curso.id %}" class="btn btn-primary">Matricular-se</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     {% endfor %}
-  </ul>
+  </div>
 
   <a href="{% url 'usuarios:logout' %}" class="btn btn-danger mt-3">Sair</a>
 </div>

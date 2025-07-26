@@ -1,5 +1,5 @@
 # usuarios/urls.py
-from django.urls import path
+from django.urls import path, reverse_lazy
 from django.contrib.auth import views as auth_views
 from . import views
 
@@ -13,28 +13,30 @@ urlpatterns = [
         next_page='core:home'), name='logout'),
 
     path('cadastro/', views.cadastro, name='cadastro'),
+
+    path('portal/', views.menu_principal, name='menu_principal'),  # <- manter só esta rota
     path('painel/', views.painel, name='painel'),
 
-    # Esqueci minha senha
+    path('matricular/<int:curso_id>/', views.matricular, name='matricular'),
+
+    # Recuperação de senha
     path('senha-esquecida/', auth_views.PasswordResetView.as_view(
         template_name='usuarios/password_reset.html',
         email_template_name='usuarios/password_reset_email.html',
         subject_template_name='usuarios/password_reset_subject.txt',
-        success_url='senha-enviada/'
+        success_url=reverse_lazy('usuarios:password_reset_done'),
     ), name='password_reset'),
 
     path('senha-enviada/', auth_views.PasswordResetDoneView.as_view(
         template_name='usuarios/password_reset_done.html'
     ), name='password_reset_done'),
 
-    # CONFIRMAÇÃO e COMPLETAÇÃO da redefinição de senha
     path('redefinir/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
         template_name='usuarios/password_reset_confirm.html',
-        success_url='/usuarios/senha-redefinida/'
+        success_url=reverse_lazy('usuarios:password_reset_complete')
     ), name='password_reset_confirm'),
 
     path('senha-redefinida/', auth_views.PasswordResetCompleteView.as_view(
         template_name='usuarios/password_reset_complete.html'
     ), name='password_reset_complete'),
 ]
-

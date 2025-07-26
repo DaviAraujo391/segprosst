@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Portal do Aluno{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Bem-vindo, {{ user.username }}</h2>
+  <p>Escolha uma opção:</p>
+
+  <div class="row">
+    <div class="col-md-4">
+      <a href="{% url 'usuarios:painel' %}" class="btn btn-outline-primary btn-block w-100">Painel de Treinamento</a>
+    </div>
+    <div class="col-md-4">
+      <a href="#" class="btn btn-outline-secondary btn-block w-100">Painel de Gestão de EPI</a>
+    </div>
+    <div class="col-md-4">
+      <a href="#" class="btn btn-outline-dark btn-block w-100">Painel de Documentos</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

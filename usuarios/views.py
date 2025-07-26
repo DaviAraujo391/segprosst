@@ -1,10 +1,11 @@
 # usuarios/views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from cursos.models import Matricula
+from django.contrib.auth import views as auth_views
+from cursos.models import Curso, Matricula
 
 def cadastro(request):
     if request.method == 'POST':
@@ -27,13 +28,34 @@ def cadastro(request):
 
     return render(request, 'usuarios/cadastro.html')
 
+
 @login_required(login_url='/usuarios/login/')
 def painel(request):
-    cursos = Matricula.objects.filter(aluno=request.user)
+    cursos = Curso.objects.all()
+
+    lista = []
+    for curso in cursos:
+        matriculado = Matricula.objects.filter(usuario=request.user, curso=curso).exists()
+        lista.append({
+            'curso': curso,
+            'matriculado': matriculado
+        })
+
     return render(request, 'usuarios/painel.html', {
         'usuario': request.user,
-        'cursos': cursos
+        'cursos': lista
     })
 
+
+@login_required
+def matricular(request, curso_id):
+    curso = get_object_or_404(Curso, id=curso_id)
+    Matricula.objects.get_or_create(usuario=request.user, curso=curso)
+    messages.success(request, f'Você foi matriculado no curso: {curso.titulo}')
+    return redirect('usuarios:painel')
+
+@login_required(login_url='/usuarios/login/')
+def menu_principal(request):
+    return render(request, 'usuarios/menu_principal.html')
 
 

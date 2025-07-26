@@ -13,5 +13,6 @@ def contato(request):
 
 @login_required(login_url='/usuarios/login/')
 def acesso_portal(request):
-    return redirect('usuarios:painel')
+    return redirect('usuarios:menu_principal')
+
 
