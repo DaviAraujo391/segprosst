@@ -14,11 +14,8 @@ urlpatterns = [
         next_page='core:home'), name='logout'),
 
     path('cadastro/', views.cadastro, name='cadastro'),
-
-    path('portal/', views.menu_principal, name='menu_principal'),  # Após login, menu principal
-
-    path('painel/', views.painel, name='painel'),  # Painel de Treinamento do aluno
-
+    path('portal/', views.menu_principal, name='menu_principal'),
+    path('painel/', views.painel, name='painel'),
     path('matricular/<int:curso_id>/', views.matricular, name='matricular'),
 
     # Recuperação de senha
@@ -35,7 +32,7 @@ urlpatterns = [
 
     path('redefinir/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
         template_name='usuarios/password_reset_confirm.html',
-        success_url=reverse_lazy('usuarios:password_reset_complete')
+        success_url=reverse_lazy('usuarios:password_reset_complete'),
     ), name='password_reset_confirm'),
 
     path('senha-redefinida/', auth_views.PasswordResetCompleteView.as_view(

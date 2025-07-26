@@ -9,5 +9,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('sobre/', views.sobre, name='sobre'),
     path('contato/', views.contato, name='contato'),
-    path('acesso-portal/', views.acesso_portal, name='acesso_portal'),  # opcional, pode redirecionar para login
+    path('acesso-portal/', views.acesso_portal, name='acesso_portal'),
 ]
+
