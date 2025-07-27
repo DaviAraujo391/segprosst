@@ -3,7 +3,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}SEGPROSST{% endblock %}</title>
+    <title>{% block title %}SEGPRO SST{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap 5 CSS -->
@@ -28,13 +28,13 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">SEGPROSST</a>
+            <a class="navbar-brand" href="{% url 'home' %}">SEGPRO SST</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{% url 'core:home' %}">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'usuarios:login' %}">Entrar</a></li>
                 </ul>
             </div>
@@ -49,7 +49,7 @@
     <!-- Rodapé -->
     <footer class="py-4 mt-auto">
         <div class="container text-center">
-            <p class="mb-0 text-muted">&copy; 2025 SEGPROSST - Todos os direitos reservados</p>
+            <p class="mb-0 text-muted">&copy; 2025 SEGPRO SST - Todos os direitos reservados</p>
         </div>
     </footer>
 
