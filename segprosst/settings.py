@@ -14,7 +14,7 @@ DEBUG = os.getenv('DJANGO_DEBUG', 'True').lower() in ['true', '1']
 ALLOWED_HOSTS = ['segprosst.onrender.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
-    'jazzmin',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
