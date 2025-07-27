@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>{{ aula.titulo }}</h2>
+
+    {% if aula.video_url %}
+      <div class="ratio ratio-16x9 my-3">
+        <iframe
+          src="{{ aula.video_url|replace:'watch?v=','embed/' }}"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    {% endif %}
+
+    {% if aula.texto %}
+      <div class="card mb-3">
+        <div class="card-body">
+          {{ aula.texto|linebreaks }}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if aula.arquivo %}
+      <div class="mb-3">
+        <a class="btn btn-outline-primary" href="{{ aula.arquivo.url }}" download>
+          📄 Baixar Material da Aula
+        </a>
+      </div>
+    {% endif %}
+
+    {% if progresso.concluido %}
+      <p class="text-success"><strong>✅ Aula concluída</strong></p>
+    {% else %}
+      <a href="{% url 'cursos:concluir_aula' aula.id %}" class="btn btn-success">Marcar como Concluída</a>
+    {% endif %}
+
+    <hr>
+
+    <a href="{% url 'cursos:questionario' aula.id %}" class="btn btn-primary mt-2">
+      Ir para o Questionário
+    </a>
+  </div>
+{% endblock %}

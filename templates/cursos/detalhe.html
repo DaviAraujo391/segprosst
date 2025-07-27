@@ -1,39 +1,43 @@
 {% extends 'base.html' %}
 
+{% block title %}{{ curso.titulo }} - SEGPRO SST{% endblock %}
+
 {% block content %}
-<h1>{{ curso.titulo }}</h1>
+<div class="container mt-4 mb-5">
+    <h1>{{ curso.titulo }}</h1>
 
-{% if curso.imagem %}
-  <img src="{{ curso.imagem.url }}" alt="Imagem do curso" style="max-width: 300px;">
-{% endif %}
+    {% if curso.imagem %}
+        <img src="{{ curso.imagem.url }}" alt="Imagem do curso" class="img-fluid mb-3" style="max-width: 300px;">
+    {% endif %}
 
-<p>{{ curso.descricao|linebreaks }}</p>
+    <p>{{ curso.descricao|linebreaks }}</p>
 
-<h3>Módulos</h3>
-<ul>
-  {% for modulo in modulos %}
-    <li>
-      <strong>{{ modulo.titulo }}</strong>
-      <ul>
-        {% for aula in modulo.aulas.all %}
-          <li>
-            <a href="{% url 'cursos:aula' modulo.id aula.id %}">{{ aula.titulo }}</a>
-          </li>
+    <h3 class="mt-4">Módulos</h3>
+    <ul>
+        {% for modulo in modulos %}
+            <li>
+                <strong>{{ modulo.titulo }}</strong>
+                <ul>
+                    {% for aula in modulo.aulas.all %}
+                        <li>
+                            <a href="{% url 'cursos:aula' modulo.id aula.id %}">{{ aula.titulo }}</a>
+                        </li>
+                    {% empty %}
+                        <li>Sem aulas cadastradas.</li>
+                    {% endfor %}
+                </ul>
+            </li>
         {% empty %}
-          <li>Sem aulas cadastradas.</li>
+            <li>Sem módulos cadastrados.</li>
         {% endfor %}
-      </ul>
-    </li>
-  {% empty %}
-    <li>Sem módulos cadastrados.</li>
-  {% endfor %}
-</ul>
+    </ul>
 
-{% if user.is_authenticated %}
-  <a href="{% url 'cursos:matricular' curso.id %}" class="btn btn-primary">Matricular-se</a>
-{% else %}
-  <p><a href="{% url 'usuarios:login' %}">Faça login</a> para se matricular.</p>
-{% endif %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'cursos:matricular' curso.id %}" class="btn btn-primary mt-3">Matricular-se</a>
+    {% else %}
+        <p class="mt-3"><a href="{% url 'usuarios:login' %}">Faça login</a> para se matricular.</p>
+    {% endif %}
 
-<a href="{% url 'usuarios:painel' %}">Voltar à área do aluno</a>
+    <a href="{% url 'usuarios:painel' %}" class="btn btn-secondary mt-3">Voltar à área do aluno</a>
+</div>
 {% endblock %}
