@@ -1,33 +1,24 @@
 {% extends "admin/base.html" %}
 {% load static %}
 
-{% block title %}Administração SEGPRO SST{% endblock %}
-
-{% block branding %}
-  <a href="{% url 'admin:index' %}" class="brand-link">
-    <img src="{% static 'img/logotipo.png' %}" alt="SEGPRO" style="height: 40px; vertical-align: middle;">
-    <span style="font-weight: bold; font-size: 1.5rem; margin-left: 10px;">SEGPRO SST</span>
-  </a>
-{% endblock %}
-
-{% block nav-global %}{% comment %} Remove default nav links {% endcomment %}{% endblock %}
-
-{% block usertools %}
-  <span style="font-weight: 600;">Bem-vindo ao Painel Administrativo SEGPRO SST</span>
-  {{ block.super }}
-{% endblock %}
+{% block title %}SEGPRO SST - Painel Administrativo{% endblock %}
 
 {% block extrastyle %}
   {{ block.super }}
-  <!-- Font Awesome CDN para ícones -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-        integrity="sha512-pM9XQ3Gj6B7EKv+rTeX6GjZ3V5Krk8J7j5kCpq6sLuC8Hp81Yz1BLfGsyqTGQ1EGDeqM4pCJw6HfQz0ePrDjKw==" 
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="{% static 'css/admin_custom.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'admin/css/custom_admin.css' %}">
 {% endblock %}
 
-{% block footer %}
-  <div class="text-muted text-center small" style="padding: 10px;">
-    © 2025 SEGPRO
+{% block branding %}
+  <div id="branding" class="segpro-branding">
+    <img src="{% static 'admin/img/logotipo.png' %}" alt="SEGPRO SST" class="segpro-logo">
+    <h1 id="site-name">Painel Administrativo SEGPRO SST</h1>
   </div>
 {% endblock %}
+
+{% block welcome-msg %}
+  <div class="segpro-welcome">
+    <p>Olá, {{ request.user.first_name|default:request.user.username }}! Bem-vindo(a) ao sistema.</p>
+  </div>
+{% endblock %}
+
+{% block nav-global %}{# Remove o alternar tema e outros links inúteis #}{% endblock %}
