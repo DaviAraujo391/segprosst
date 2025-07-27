@@ -1,6 +1,6 @@
 # Arquivo: cursos/admin.py
 
-from django.contrib import admin 
+from django.contrib import admin
 from .models import (
     Curso, Matricula, Modulo, Aula,
     Progresso, Questionario, Resposta, Certificado
