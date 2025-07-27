@@ -2,6 +2,7 @@ services:
   - type: web
     name: segprosst
     env: python
+    pythonVersion: 3.11.4   # <-- adiciona essa linha para definir a versão do Python
     buildCommand: "./build.sh"
     startCommand: "gunicorn segprosst.wsgi:application"
     envVars:
@@ -15,3 +16,4 @@ services:
         sync: false
       - key: EMAIL_HOST_PASSWORD
         sync: false
+
