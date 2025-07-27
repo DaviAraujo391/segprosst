@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3rem 1rem; /* reduzido para não encostar na navbar */
+    padding: 3rem 1rem;
     font-family: 'Segoe UI', sans-serif;
   }
 
@@ -87,6 +87,10 @@
   .alert {
     font-size: 0.875rem;
   }
+
+  .toggle-password {
+    cursor: pointer;
+  }
 </style>
 {% endblock %}
 
@@ -116,6 +120,9 @@
       <div class="input-group">
         <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
         <input type="password" class="form-control" name="password" id="password" required>
+        <span class="input-group-text toggle-password" id="togglePassword">
+          <i class="bi bi-eye" id="eyeIcon"></i>
+        </span>
       </div>
     </div>
 
@@ -146,5 +153,18 @@
     btnText.textContent = 'Entrando...';
     btnSpinner.classList.remove('d-none');
   });
+
+  // Toggle de visibilidade da senha
+  const togglePassword = document.getElementById('togglePassword');
+  const passwordInput = document.getElementById('password');
+  const eyeIcon = document.getElementById('eyeIcon');
+
+  togglePassword.addEventListener('click', () => {
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+    eyeIcon.classList.toggle('bi-eye');
+    eyeIcon.classList.toggle('bi-eye-slash');
+  });
 </script>
 {% endblock %}
+
