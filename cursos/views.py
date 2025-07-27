@@ -7,6 +7,7 @@ from django.utils.crypto import get_random_string
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from weasyprint import HTML
+import re
 
 from .models import (
     Curso, Matricula, Modulo, Aula,
@@ -51,18 +52,20 @@ def visualizar_aula(request, modulo_id, aula_id):
 
     progresso, _ = Progresso.objects.get_or_create(aluno=request.user, aula=aula)
 
-    # Ajusta video_url para embed do YouTube (se aplicável)
+    # Novo tratamento para link de vídeo
     video_url_embed = None
     if aula.video_url:
-        video_url_embed = aula.video_url.replace('watch?v=', 'embed/')
+        # Tenta extrair ID do vídeo do YouTube
+        match = re.search(r"(?:v=|youtu\.be/)([A-Za-z0-9_-]{11})", aula.video_url)
+        if match:
+            video_id = match.group(1)
+            video_url_embed = f"https://www.youtube.com/embed/{video_id}"
 
-    context = {
+    return render(request, 'cursos/aula.html', {
         'aula': aula,
         'progresso': progresso,
         'video_url_embed': video_url_embed,
-    }
-
-    return render(request, 'cursos/aula.html', context)
+    })
 
 
 @login_required
