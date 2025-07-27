@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from cursos.models import Curso, Matricula
+from cursos.models import Curso, Matricula, Aula
 
 def cadastro(request):
     if request.method == 'POST':
@@ -32,18 +32,18 @@ def cadastro(request):
 @login_required(login_url='/usuarios/login/')
 def painel(request):
     cursos = Curso.objects.all()
-    lista = []
 
     for curso in cursos:
-        matriculado = Matricula.objects.filter(aluno=request.user, curso=curso).exists()
-        lista.append({
-            'curso': curso,
-            'matriculado': matriculado
-        })
+        curso.matriculado = Matricula.objects.filter(aluno=request.user, curso=curso).exists()
+        if curso.matriculado:
+            # Busca a primeira aula do curso
+            curso.proxima_aula = Aula.objects.filter(modulo__curso=curso).order_by('id').first()
+        else:
+            curso.proxima_aula = None
 
     return render(request, 'usuarios/painel.html', {
         'usuario': request.user,
-        'cursos': lista
+        'cursos': cursos
     })
 
 

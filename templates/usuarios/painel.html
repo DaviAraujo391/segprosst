@@ -8,28 +8,38 @@
 
   <hr>
 
-  <h4>Todos os Cursos</h4>
+  <h4>Meus Cursos</h4>
   <div class="row">
-    {% for m in cursos %}
+    {% for curso in cursos %}
       <div class="col-md-4 mb-4">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">{{ m.curso.titulo }}</h5>
-            <p class="card-text">{{ m.curso.descricao|truncatechars:100 }}</p>
+            <h5 class="card-title">{{ curso.titulo }}</h5>
+            <p class="card-text">{{ curso.descricao|truncatechars:100 }}</p>
 
-            {% if m.matriculado %}
-              <button class="btn btn-success" disabled>Matriculado</button>
+            {% if curso.matriculado %}
+              {% if curso.proxima_aula %}
+                <a href="{% url 'cursos:aula' curso.proxima_aula.modulo.id curso.proxima_aula.id %}" class="btn btn-success">
+                  Acessar curso
+                </a>
+              {% else %}
+                <span class="text-muted">Curso sem aulas disponíveis</span>
+              {% endif %}
             {% else %}
-              <a href="{% url 'usuarios:matricular' m.curso.id %}" class="btn btn-primary">Matricular-se</a>
+              <a href="{% url 'usuarios:matricular' curso.id %}" class="btn btn-primary">Matricular-se</a>
             {% endif %}
           </div>
         </div>
       </div>
+    {% empty %}
+      <p>Você ainda não está matriculado em nenhum curso.</p>
     {% endfor %}
   </div>
 
   <a href="{% url 'usuarios:logout' %}" class="btn btn-danger mt-3">Sair</a>
 </div>
 {% endblock %}
+
+
 
 
