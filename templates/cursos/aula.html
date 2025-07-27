@@ -1,46 +1,118 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}{{ aula.titulo }} - Aula{% endblock %}
+
 {% block content %}
-  <div class="container mt-4">
-    <h2>{{ aula.titulo }}</h2>
+<div class="container mt-4">
+  <h2 class="mb-3">{{ aula.titulo }}</h2>
 
-    {% if aula.video_url %}
-      <div class="ratio ratio-16x9 my-3">
-        <iframe
-          src="{{ aula.video_url|replace:'watch?v=','embed/' }}"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
-      </div>
-    {% endif %}
-
-    {% if aula.texto %}
-      <div class="card mb-3">
-        <div class="card-body">
-          {{ aula.texto|linebreaks }}
+  <!-- BARRA DE PROGRESSO -->
+  {% if total_aulas and aulas_concluidas %}
+    {% with progresso_percent=aulas_concluidas|divisibleby:total_aulas|floatformat:0 %}
+      <div class="mb-4">
+        <label for="progressoCurso"><strong>Progresso do Curso: {{ aulas_concluidas }}/{{ total_aulas }} aulas concluídas</strong></label>
+        <div class="progress">
+          <div class="progress-bar bg-success" role="progressbar"
+               style="width:{{ progresso_percent }}%"
+               aria-valuenow="{{ progresso_percent }}" aria-valuemin="0" aria-valuemax="100">
+            {{ progresso_percent }}%
+          </div>
         </div>
       </div>
-    {% endif %}
+    {% endwith %}
+  {% endif %}
 
-    {% if aula.arquivo %}
-      <div class="mb-3">
-        <a class="btn btn-outline-primary" href="{{ aula.arquivo.url }}" download>
-          📄 Baixar Material da Aula
-        </a>
+  <!-- VÍDEO -->
+  {% if aula.video_url %}
+    <div class="ratio ratio-16x9 mb-4">
+      <iframe
+        src="{{ aula.video_url|replace:'watch?v=','embed/' }}"
+        title="Vídeo da Aula"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+  {% endif %}
+
+  <!-- CONTEÚDO TEXTO -->
+  {% if aula.texto %}
+    <div class="card mb-4">
+      <div class="card-body">
+        {{ aula.texto|linebreaks }}
       </div>
-    {% endif %}
+    </div>
+  {% endif %}
 
+  <!-- ARQUIVO -->
+  {% if aula.arquivo %}
+    <div class="mb-4">
+      <a href="{{ aula.arquivo.url }}" class="btn btn-outline-primary" download>
+        📥 Baixar Material Complementar (PDF)
+      </a>
+    </div>
+  {% endif %}
+
+  <!-- CONCLUSÃO -->
+  <div class="mb-4">
     {% if progresso.concluido %}
       <p class="text-success"><strong>✅ Aula concluída</strong></p>
     {% else %}
-      <a href="{% url 'cursos:concluir_aula' aula.id %}" class="btn btn-success">Marcar como Concluída</a>
+      <a href="{% url 'cursos:concluir_aula' aula.id %}" class="btn btn-success">
+        ✅ Marcar como Concluída
+      </a>
     {% endif %}
-
-    <hr>
-
-    <a href="{% url 'cursos:questionario' aula.id %}" class="btn btn-primary mt-2">
-      Ir para o Questionário
-    </a>
   </div>
+
+  <!-- QUIZ -->
+  {% if aula.tem_questionario %}
+    <div class="mb-4">
+      <a href="{% url 'cursos:questionario' aula.id %}" class="btn btn-primary">
+        📝 Ir para o Questionário da Aula
+      </a>
+    </div>
+  {% endif %}
+
+  <!-- PRÓXIMA AULA -->
+  {% if proxima_aula %}
+    <div class="mt-4">
+      <a href="{% url 'cursos:exibir_aula' proxima_aula.id %}" class="btn btn-outline-success">
+        ⏭️ Ir para a Próxima Aula: {{ proxima_aula.titulo }}
+      </a>
+    </div>
+  {% endif %}
+
+  <!-- COMENTÁRIOS -->
+  <hr>
+  <div class="mt-5">
+    <h4>💬 Comentários da Aula</h4>
+
+    {% for comentario in comentarios %}
+      <div class="border p-2 mb-2 rounded bg-light">
+        <strong>{{ comentario.usuario.get_full_name }}</strong>
+        <small class="text-muted float-end">{{ comentario.data|date:"d/m/Y H:i" }}</small>
+        <p class="mb-1">{{ comentario.texto|linebreaks }}</p>
+      </div>
+    {% empty %}
+      <p class="text-muted">Nenhum comentário ainda. Seja o primeiro!</p>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+      <form method="POST" class="mt-3">
+        {% csrf_token %}
+        <div class="mb-3">
+          <textarea name="comentario" class="form-control" rows="3" placeholder="Digite seu comentário..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">💬 Enviar Comentário</button>
+      </form>
+    {% else %}
+      <p><a href="{% url 'usuarios:login' %}">Faça login</a> para comentar.</p>
+    {% endif %}
+  </div>
+
+  <!-- VOLTAR -->
+  <div class="mt-5">
+    <a href="{% url 'usuarios:painel' %}" class="btn btn-secondary">⬅ Voltar ao Painel</a>
+  </div>
+</div>
 {% endblock %}

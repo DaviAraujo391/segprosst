@@ -56,6 +56,20 @@ def matricular(request, curso_id):
 
 
 @login_required(login_url='/usuarios/login/')
+def acessar_curso(request, curso_id):
+    curso = get_object_or_404(Curso, id=curso_id)
+    # Verifica se o usuário está matriculado
+    if not Matricula.objects.filter(aluno=request.user, curso=curso).exists():
+        messages.error(request, 'Você não está matriculado neste curso.')
+        return redirect('usuarios:painel')
+
+    return render(request, 'usuarios/aula.html', {
+        'curso': curso
+    })
+
+
+@login_required(login_url='/usuarios/login/')
 def menu_principal(request):
     return render(request, 'usuarios/menu_principal.html')
+
 

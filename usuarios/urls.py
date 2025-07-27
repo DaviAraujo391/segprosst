@@ -1,3 +1,5 @@
+# usuarios/urls.py
+
 from django.urls import path, reverse_lazy
 from django.contrib.auth import views as auth_views
 from . import views
@@ -5,12 +7,18 @@ from . import views
 app_name = 'usuarios'
 
 urlpatterns = [
+    # Autenticação
     path('login/', auth_views.LoginView.as_view(template_name='usuarios/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='core:home'), name='logout'),
     path('cadastro/', views.cadastro, name='cadastro'),
+
+    # Portal e painel
     path('portal/', views.menu_principal, name='menu_principal'),
     path('painel/', views.painel, name='painel'),
+
+    # Matrícula e acesso ao curso
     path('matricular/<int:curso_id>/', views.matricular, name='matricular'),
+    path('curso/<int:curso_id>/aula/', views.acessar_curso, name='acessar_curso'),
 
     # Recuperação de senha
     path('senha-esquecida/', auth_views.PasswordResetView.as_view(
@@ -33,3 +41,4 @@ urlpatterns = [
         template_name='usuarios/password_reset_complete.html'
     ), name='password_reset_complete'),
 ]
+
