@@ -14,7 +14,6 @@ DEBUG = os.getenv('DJANGO_DEBUG', 'True').lower() in ['true', '1']
 ALLOWED_HOSTS = ['segprosst.onrender.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
-    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -117,62 +116,6 @@ if not DEBUG:
         },
     }
 
-
-JAZZMIN_SETTINGS = {
-    "site_title": "Administração SEGPRO SST",
-    "site_header": "SEGPRO SST",
-    "site_brand": "SEGPRO",
-    "site_logo": "img/logotipo.png", 
-    "login_logo": "img/logotipo.png",
-    "login_logo_dark": "img/logotipo.png",
-
-    "welcome_sign": "Bem-vindo ao Painel Administrativo SEGPRO SST",
-    "copyright": "© 2025 SEGPRO",
-    "show_sidebar": True,
-    "navigation_expanded": True,
-    "hide_apps": [],
-
-    # Ícones para cada modelo
-    "icons": {
-        "cursos.Curso": "fas fa-book",
-        "cursos.Matricula": "fas fa-user-graduate",
-        "cursos.Modulo": "fas fa-list-alt",
-        "cursos.Aula": "fas fa-video",
-        "cursos.Progresso": "fas fa-check-circle",
-        "cursos.Questionario": "fas fa-question",
-        "cursos.Resposta": "fas fa-reply",
-        "cursos.Certificado": "fas fa-certificate",
-        "auth.User": "fas fa-user-shield",
-        "auth.Group": "fas fa-users-cog",
-    },
-
-    # Links no topo do painel
-    "topmenu_links": [
-        {"name": "Página Inicial", "url": "/", "new_window": True},
-        {"app": "cursos"},
-        {"model": "auth.User"},
-    ],
-
-    # Organização do menu lateral
-    "side_menu": [
-        {"label": "Gestão de Cursos", "app": "cursos", "icon": "fas fa-graduation-cap"},
-        {"label": "Usuários e Permissões", "models": [
-            "auth.user", "auth.group"
-        ], "icon": "fas fa-user-shield"},
-    ],
-
-    # Layout e comportamento
-    "use_google_fonts_cdn": True,
-    "related_modal_active": True,
-    "custom_css": None,
-    "custom_js": None,
-    "language_chooser": True,
-    "show_ui_builder": False,
-
-    # Tema claro/escuro
-    "default_theme": "auto",  # Pode ser: "auto", "light", "dark"
-    "theme": "slate",  # Outras opções: "cosmo", "lux", "cyborg", "minty", etc.
-}
 
 
 
