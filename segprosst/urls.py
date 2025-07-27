@@ -9,9 +9,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('usuarios/', include('usuarios.urls')),
-
-    # ✅ Adicione esta linha para corrigir o erro:
     path('cursos/', include('cursos.urls', namespace='cursos')),
+    path('epi/', include('epi.urls', namespace='epi')),
 ]
 
 # Servir arquivos estáticos/media no desenvolvimento
