@@ -5,56 +5,98 @@
     <title>Certificado de Conclusão</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            padding: 60px;
-            text-align: center;
+            font-family: 'Georgia', serif;
+            background-color: #f2f2f2;
+            padding: 50px;
         }
 
         .certificado {
+            position: relative; /* Para posicionar a moldura atrás */
             background: white;
-            padding: 40px;
-            border: 6px double #333;
-            max-width: 800px;
+            padding: 60px;
+            border: 12px double #0a0a0a;
+            max-width: 900px;
             margin: 0 auto;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+            overflow: hidden; /* Esconde excessos da moldura */
+        }
+
+        /* Moldura PNG cobrindo toda a área */
+        .certificado .moldura {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none; /* Não interfere em cliques */
+            z-index: 0;
+        }
+
+        /* Conteúdo acima da moldura */
+        .certificado > *:not(.moldura) {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
         }
 
         h1 {
             font-size: 36px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             color: #2c3e50;
         }
 
         h2 {
-            font-size: 22px;
-            margin: 20px 0 10px;
+            font-size: 24px;
+            margin: 10px 0;
+            color: #2c3e50;
         }
 
         p {
-            font-size: 16px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .dados-aluno {
+            margin: 30px 0;
         }
 
         .codigo {
-            margin-top: 40px;
+            margin-top: 30px;
             font-size: 14px;
-            color: #666;
+            color: #777;
         }
 
-        .btn {
+        .assinaturas {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+        }
+
+        .assinatura {
+            width: 30%;
+            text-align: center;
+        }
+
+        .linha-assinatura {
+            border-top: 1px solid #000;
+            margin-top: 60px;
+            padding-top: 5px;
+            font-size: 14px;
+        }
+
+        .conteudo-programatico {
             margin-top: 40px;
-            display: inline-block;
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
+            text-align: left;
         }
 
-        .btn:hover {
-            background-color: #218838;
+        ul {
+            list-style: disc;
+            margin-left: 30px;
+            font-size: 16px;
         }
 
         @media print {
@@ -66,23 +108,60 @@
 </head>
 <body>
     <div class="certificado">
+        {% load static %}
+        <img src="{% static 'admin/img/moldura.png' %}" alt="Moldura" class="moldura">
+        <img src="{% static 'admin/img/logotipo.png' %}" alt="SEGPRO SST" class="logo">
+
         <h1>Certificado de Conclusão</h1>
 
-        <h2>Conferido a:</h2>
-        <h2><strong>{{ aluno.get_full_name|default:aluno.username }}</strong></h2>
+        <div class="dados-aluno">
+            <p>Certificamos que <strong>{{ aluno.get_full_name|default:aluno.username }}</strong>, CPF: <strong>{{ aluno.perfil.cpf }}</strong>, concluiu com êxito o curso:</p>
+            <h2>"{{ curso.titulo }}"</h2>
+            <p>Carga horária total de {{ curso.carga_horaria }} horas.</p>
+            <p>Emitido em {{ certificado.emitido_em|date:"d/m/Y" }}</p>
+        </div>
 
-        <p>pela conclusão do curso</p>
-        <h2>"{{ curso.titulo }}"</h2>
+        <div class="conteudo-programatico">
+            <h2>Conteúdo Programático</h2>
+            <ul>
+                {% for modulo in curso.modulos.all %}
+                    <li><strong>{{ modulo.titulo }}</strong>
+                        <ul>
+                            {% for aula in modulo.aulas.all %}
+                                <li>{{ aula.titulo }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
 
-        <p>Carga Horária: {{ curso.carga_horaria }} horas</p>
-        <p>Data de Emissão: {{ certificado.data_emissao|date:"d/m/Y" }}</p>
+        <div class="assinaturas">
+            <div class="assinatura">
+                <div class="linha-assinatura">
+                    Responsável Técnico<br>
+                    SEGPRO SST
+                </div>
+            </div>
+            <div class="assinatura">
+                <div class="linha-assinatura">
+                    Instrutor<br>
+                    {{ curso.instrutor }}
+                </div>
+            </div>
+            <div class="assinatura">
+                <div class="linha-assinatura">
+                    Aluno<br>
+                    (Assinatura Manual)
+                </div>
+            </div>
+        </div>
 
-        <div class="codigo">Código de Validação: {{ certificado.codigo_validacao }}</div>
-
-        <a href="{% url 'cursos:certificado' curso.id %}" class="btn" target="_blank">
-            Baixar PDF do Certificado
-        </a>
+        <div class="codigo">
+            Código de Validação: {{ certificado.codigo_validacao }}
+        </div>
     </div>
 </body>
 </html>
+
 
