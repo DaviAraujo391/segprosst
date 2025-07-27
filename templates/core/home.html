@@ -1,122 +1,45 @@
-{% block extra_css %}
-<style>
-  /* Fonte mais moderna */
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-    background-color: #f8f9fa;
-  }
+{% extends 'base.html' %}
+{% block title %}Home - SEGPROSST{% endblock %}
 
-  /* Navegação superior */
-  header nav ul.nav {
-    gap: 1.25rem;
-  }
+{% block content %}
+<section class="bg-light py-5 text-center">
+  <div class="container">
+    <h1 class="display-4 fw-bold mb-3">Bem-vindo à SEGPROSST</h1>
+    <p class="lead text-muted mb-4">
+      Portal especializado em cursos e treinamentos voltados à segurança do trabalho.
+      Capacite-se com conteúdos atualizados e instrutores experientes.
+    </p>
+    <a href="{% url 'cursos:lista' %}" class="btn btn-success btn-lg px-4">
+      Explorar Cursos
+    </a>
+  </div>
+</section>
 
-  header nav ul.nav .nav-link {
-    transition: all 0.3s ease;
-    color: #444;
-    font-weight: 600;
-  }
-  header nav ul.nav .nav-link.btn-outline-success {
-    border-color: #28a745;
-    color: #28a745;
-  }
-  header nav ul.nav .nav-link.btn-outline-success:hover,
-  header nav ul.nav .nav-link.btn-outline-success:focus {
-    background-color: #28a745;
-    color: white !important;
-    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
-  }
-
-  header nav ul.nav .nav-link.btn-outline-primary {
-    border-color: #0d6efd;
-    color: #0d6efd;
-  }
-  header nav ul.nav .nav-link.btn-outline-primary:hover,
-  header nav ul.nav .nav-link.btn-outline-primary:focus {
-    background-color: #0d6efd;
-    color: white !important;
-    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
-  }
-
-  header nav ul.nav .nav-link.btn-outline-dark {
-    border-color: #212529;
-    color: #212529;
-  }
-  header nav ul.nav .nav-link.btn-outline-dark:hover,
-  header nav ul.nav .nav-link.btn-outline-dark:focus {
-    background-color: #212529;
-    color: white !important;
-    box-shadow: 0 4px 15px rgba(33, 37, 41, 0.4);
-  }
-
-  header nav ul.nav .nav-link.btn-outline-info {
-    border-color: #0dcaf0;
-    color: #0dcaf0;
-  }
-  header nav ul.nav .nav-link.btn-outline-info:hover,
-  header nav ul.nav .nav-link.btn-outline-info:focus {
-    background-color: #0dcaf0;
-    color: white !important;
-    box-shadow: 0 4px 15px rgba(13, 202, 240, 0.4);
-  }
-
-  /* Dropdown menu */
-  .dropdown-menu {
-    border-radius: 0.75rem;
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
-  }
-  .dropdown-item:hover, .dropdown-item:focus {
-    background-color: #0dcaf0;
-    color: white !important;
-  }
-
-  /* Cards (seções) */
-  section {
-    box-shadow:
-      0 4px 6px rgba(0, 0, 0, 0.1),
-      0 1px 3px rgba(0, 0, 0, 0.06);
-    border-radius: 1rem;
-    transition: box-shadow 0.3s ease;
-    background: white;
-  }
-  section:hover {
-    box-shadow:
-      0 8px 20px rgba(0, 0, 0, 0.15),
-      0 2px 6px rgba(0, 0, 0, 0.10);
-  }
-
-  /* Formulário */
-  form input.form-control-lg,
-  form textarea.form-control-lg {
-    border-radius: 0.6rem;
-    border: 1.5px solid #ced4da;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  form input.form-control-lg:focus,
-  form textarea.form-control-lg:focus {
-    border-color: #0dcaf0;
-    box-shadow: 0 0 8px rgba(13, 202, 240, 0.6);
-  }
-
-  /* Botão WhatsApp */
-  a.position-fixed.btn-success {
-    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  a.position-fixed.btn-success:hover, 
-  a.position-fixed.btn-success:focus {
-    transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.9);
-  }
-
-  /* Mapa arredondado */
-  .ratio iframe {
-    border-radius: 1rem;
-  }
-</style>
+<section class="container py-5">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="mb-3">
+        <i class="bi bi-shield-lock display-4 text-success"></i>
+      </div>
+      <h5>Compromisso com a Segurança</h5>
+      <p class="text-muted">Cursos pensados para promover ambientes de trabalho mais seguros.</p>
+    </div>
+    <div class="col-md-4">
+      <div class="mb-3">
+        <i class="bi bi-mortarboard display-4 text-success"></i>
+      </div>
+      <h5>Formação Profissional</h5>
+      <p class="text-muted">Instrutores qualificados e material didático sempre atualizado.</p>
+    </div>
+    <div class="col-md-4">
+      <div class="mb-3">
+        <i class="bi bi-patch-check display-4 text-success"></i>
+      </div>
+      <h5>Certificados Reconhecidos</h5>
+      <p class="text-muted">Conclua os cursos e receba seu certificado digital automaticamente.</p>
+    </div>
+  </div>
+</section>
 {% endblock %}
-
-
 
 
