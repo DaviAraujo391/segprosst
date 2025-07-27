@@ -3,7 +3,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'core'
+app_name = 'core'  # Namespace do app core
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('contato/', views.contato, name='contato'),
     path('acesso-portal/', views.acesso_portal, name='acesso_portal'),
 ]
+
 
