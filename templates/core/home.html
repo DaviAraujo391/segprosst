@@ -1,9 +1,9 @@
-<!-- templates/core/home.html -->
 {% extends 'base.html' %}
 
 {% block title %}Home - SEGPRO SST{% endblock %}
 
 {% block content %}
+<!-- Seção de boas-vindas -->
 <section class="bg-light py-5 text-center">
   <div class="container">
     <h1 class="display-4 fw-bold mb-3">Bem-vindo à SEGPRO SST</h1>
@@ -17,35 +17,66 @@
   </div>
 </section>
 
+<!-- Seção de ícones -->
 <section class="container py-5">
   <div class="row text-center">
     <div class="col-md-4 mb-4">
-      <div>
-        <i class="bi bi-shield-lock display-4 text-success"></i>
-        <h4 class="mt-3">Segurança</h4>
-        <p>Conteúdos atualizados com foco em segurança do trabalho e prevenção de acidentes.</p>
-      </div>
+      <i class="bi bi-shield-lock display-4 text-success"></i>
+      <h4 class="mt-3">Segurança</h4>
+      <p>Conteúdos atualizados com foco em segurança do trabalho e prevenção de acidentes.</p>
     </div>
     <div class="col-md-4 mb-4">
-      <div>
-        <i class="bi bi-person-video2 display-4 text-success"></i>
-        <h4 class="mt-3">Instrutores</h4>
-        <p>Aprenda com profissionais qualificados e experientes no setor.</p>
-      </div>
+      <i class="bi bi-person-video2 display-4 text-success"></i>
+      <h4 class="mt-3">Instrutores</h4>
+      <p>Aprenda com profissionais qualificados e experientes no setor.</p>
     </div>
     <div class="col-md-4 mb-4">
-      <div>
-        <i class="bi bi-patch-check display-4 text-success"></i>
-        <h4 class="mt-3">Certificação</h4>
-        <p>Garanta seu certificado válido e impulsione sua carreira com qualidade.</p>
+      <i class="bi bi-patch-check display-4 text-success"></i>
+      <h4 class="mt-3">Certificação</h4>
+      <p>Garanta seu certificado válido e impulsione sua carreira com qualidade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Seção com scroll horizontal de cards -->
+<section class="container py-5">
+  <h2 class="mb-4 text-success text-center">Nossos Serviços</h2>
+  <div class="card-scroll">
+    <!-- Card: Consultoria -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Consultoria</h5>
+        <p class="card-text">Soluções personalizadas em segurança do trabalho para empresas de todos os portes.</p>
+        <a href="{% url 'core:sobre' %}" class="btn btn-outline-success">Saiba mais</a>
+      </div>
+    </div>
+
+    <!-- Card: Serviços -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Serviços</h5>
+        <p class="card-text">Treinamentos, avaliações e documentação exigida pela legislação trabalhista.</p>
+        <a href="{% url 'core:contato' %}" class="btn btn-outline-success">Entre em contato</a>
+      </div>
+    </div>
+
+    <!-- Card: Contato -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Contato</h5>
+        <p class="card-text">Fale conosco para agendar uma visita ou solicitar um orçamento.</p>
+        <a href="{% url 'core:contato' %}" class="btn btn-outline-success">Contato</a>
+      </div>
+    </div>
+
+    <!-- Card: Sobre -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Sobre</h5>
+        <p class="card-text">Conheça a missão, visão e valores da SEGPRO SST.</p>
+        <a href="{% url 'core:sobre' %}" class="btn btn-outline-success">Nossa história</a>
       </div>
     </div>
   </div>
 </section>
 {% endblock %}
-
-
-
-
-
-
