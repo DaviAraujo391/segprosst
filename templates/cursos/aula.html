@@ -24,16 +24,16 @@
   {% endif %}
 
   <!-- VÍDEO -->
-  {% if aula.video_url %}
-    <div class="ratio ratio-16x9 mb-4">
-      <iframe
-        src="{{ aula.video_url|replace:'watch?v=','embed/' }}"
-        title="Vídeo da Aula"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
-    </div>
-  {% endif %}
+  {% if video_url_embed %}
+  <div class="ratio ratio-16x9 mb-4">
+    <iframe
+      src="{{ video_url_embed }}"
+      title="Vídeo da Aula"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </div>
+{% endif %}
 
   <!-- CONTEÚDO TEXTO -->
   {% if aula.texto %}

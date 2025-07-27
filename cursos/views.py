@@ -51,7 +51,18 @@ def visualizar_aula(request, modulo_id, aula_id):
 
     progresso, _ = Progresso.objects.get_or_create(aluno=request.user, aula=aula)
 
-    return render(request, 'cursos/aula.html', {'aula': aula, 'progresso': progresso})
+    # Ajusta video_url para embed do YouTube (se aplicável)
+    video_url_embed = None
+    if aula.video_url:
+        video_url_embed = aula.video_url.replace('watch?v=', 'embed/')
+
+    context = {
+        'aula': aula,
+        'progresso': progresso,
+        'video_url_embed': video_url_embed,
+    }
+
+    return render(request, 'cursos/aula.html', context)
 
 
 @login_required
