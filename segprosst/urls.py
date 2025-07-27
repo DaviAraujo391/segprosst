@@ -9,11 +9,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('usuarios/', include('usuarios.urls')),
+
+    # ✅ Adicione esta linha para corrigir o erro:
+    path('cursos/', include('cursos.urls', namespace='cursos')),
 ]
 
 # Servir arquivos estáticos/media no desenvolvimento
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 
 
